@@ -5,7 +5,7 @@
   color: var(--text-over-primary);
   padding: 1rem;
   border-radius: 1rem;
-  transition: .2s ease-in-out background-color;
+  transition: var(--transition-default) background-color;
 }
 
 .button:hover {

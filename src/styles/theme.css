@@ -34,4 +34,6 @@
 
   --disabled: #555f7d;
   --text-disabled: #aab3cc;
+
+  --transition-default: .2s ease-in-out;
 }

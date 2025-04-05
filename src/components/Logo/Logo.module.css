@@ -8,6 +8,12 @@
   aspect-ratio: 1/1;
 
   color: var(--primary);
+  transition: var(--transition-default);
+}
+
+.logo:hover {
+  cursor: pointer;
+  color: var(--primary-dark);
 }
 
 .logo .logo__text {
