@@ -1,0 +1,16 @@
+.logo {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: fit-content;
+  padding: 1rem;
+  aspect-ratio: 1/1;
+
+  color: var(--primary);
+}
+
+.logo .logo__text {
+  font-size: 4rem;
+  font-weight: bold;
+}
