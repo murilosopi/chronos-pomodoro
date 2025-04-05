@@ -1,0 +1,14 @@
+.button {
+  all: unset;
+
+  background-color: var(--primary);
+  color: var(--text-over-primary);
+  padding: 1rem;
+  border-radius: 1rem;
+  transition: .2s ease-in-out background-color;
+}
+
+.button:hover {
+  background-color: var(--primary-dark);
+  cursor: pointer;
+}
