@@ -5,14 +5,18 @@ type InputProps = {
   type?: string;
   placeholder?: string;
   label?: string;
+  name?: string;
   onEnter?: React.KeyboardEventHandler;
+  onChange?: React.ChangeEventHandler;
 };
 
 export const Input = ({
   type = "text",
   placeholder = "",
   label = "",
+  name = "",
   onEnter = () => {},
+  onChange = () => {},
 }: InputProps) => {
   const id = useRef(useId());
 
@@ -24,11 +28,13 @@ export const Input = ({
     <>
       {!!label && <label htmlFor={id.current}>{label}</label>}
       <input
-        className={styles.input}
-        onKeyDown={keyDownHandler}
         type={type}
+        name={name}
         placeholder={placeholder}
         id={id.current}
+        className={styles.input}
+        onKeyDown={keyDownHandler}
+        onChange={onChange}
       />
     </>
   );
