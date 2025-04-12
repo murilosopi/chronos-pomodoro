@@ -1,0 +1,6 @@
+.timer {
+  font-size: clamp(8rem, 25vw, 18rem);
+  font-weight: bold;
+  text-align: center;
+  line-height: 1.3;
+}
