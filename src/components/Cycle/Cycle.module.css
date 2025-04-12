@@ -1,0 +1,17 @@
+.cycle {
+  width: 18px;
+  aspect-ratio: 1/1;
+  border-radius: 50%;
+}
+
+.cycle--focus {
+  background-color: var(--warning);
+}
+
+.cycle--break {
+  background-color: var(--info);
+}
+
+.cycle--rest {
+  background-color: var(--primary);
+}
