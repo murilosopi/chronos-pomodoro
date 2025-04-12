@@ -1,11 +1,13 @@
 import { CycleTypes } from "../types/enums/CycleType";
 
-export const cycles: Record<
+export const cyclesHistoryTitle = "Ciclos:";
+
+export const cycleTypesDefinitions: Record<
   CycleTypes,
   {
     title: string;
     description: {
-      next: string;
+      notStarted: string;
       running: string;
     };
     minutesDuration: number;
@@ -14,7 +16,7 @@ export const cycles: Record<
   [CycleTypes.Focus]: {
     title: "Ciclo de trabalho",
     description: {
-      next: "Nesse ciclo **foque** por **25 min**",
+      notStarted: "Nesse ciclo **foque** por **25 min**",
       running: "Fique **em foco**",
     },
     minutesDuration: 25,
@@ -22,7 +24,7 @@ export const cycles: Record<
   [CycleTypes.Rest]: {
     title: "Ciclo de descanso",
     description: {
-      next: "Nesse ciclo **descanse** por 5 min.",
+      notStarted: "Nesse ciclo **descanse** por 5 min.",
       running: "**Descanse**",
     },
     minutesDuration: 5,
@@ -30,7 +32,7 @@ export const cycles: Record<
   [CycleTypes.Break]: {
     title: "Ciclo de descanso",
     description: {
-      next: "Nesse ciclo **descanse** por 15 min.",
+      notStarted: "Nesse ciclo **descanse** por 15 min.",
       running: "**Descanse**",
     },
     minutesDuration: 15,

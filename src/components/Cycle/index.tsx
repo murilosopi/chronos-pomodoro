@@ -1,5 +1,5 @@
 import styles from "./Cycle.module.css";
-import { cycles } from "../../constants/cycle";
+import { cycleTypesDefinitions } from "../../constants/cycle";
 import { CycleTypes } from "../../types/enums/CycleType";
 
 type CycleProps = {
@@ -7,7 +7,7 @@ type CycleProps = {
 };
 
 export const Cycle = ({ type }: CycleProps) => {
-  const title = cycles[type].title;
+  const title = cycleTypesDefinitions[type].title;
 
   const variantByType = {
     [CycleTypes.Rest]: styles["cycle--rest"],

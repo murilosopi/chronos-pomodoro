@@ -1,0 +1,13 @@
+.cycles_history {
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.cycles_history__list {
+  list-style-type: none;
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+}
