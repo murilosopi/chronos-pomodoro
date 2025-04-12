@@ -1,0 +1,7 @@
+.input {
+  all: unset;
+  padding: 1rem;
+  border-bottom: 2px solid var(--primary);
+  font-size: 1.8rem;
+  text-align: center;
+}
