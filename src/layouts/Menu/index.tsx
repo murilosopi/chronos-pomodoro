@@ -4,7 +4,7 @@ import styles from "./Menu.module.css";
 import { menuTitles } from "../../constants/menu";
 
 export const Menu = () => (
-  <div className={styles.menu}>
+  <nav className={styles.menu}>
     <Button title={menuTitles.home}>
       <HomeIcon />
     </Button>
@@ -20,5 +20,5 @@ export const Menu = () => (
     <Button title={menuTitles.theme.dark}>
       <SunIcon />
     </Button>
-  </div>
+  </nav>
 );
