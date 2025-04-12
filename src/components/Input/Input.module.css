@@ -1,7 +1,19 @@
 .input {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.input__field {
   all: unset;
   padding: 1rem;
   border-bottom: 2px solid var(--primary);
   font-size: 1.8rem;
   text-align: center;
+}
+
+.input__field::placeholder {
+  font-size: 1.3rem;
+  font-style: italic;
+  color: var(--gray-500);
 }

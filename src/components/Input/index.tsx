@@ -25,17 +25,17 @@ export const Input = ({
   };
 
   return (
-    <>
+    <div className={styles.input}>
       {!!label && <label htmlFor={id.current}>{label}</label>}
       <input
         type={type}
         name={name}
         placeholder={placeholder}
         id={id.current}
-        className={styles.input}
+        className={styles.input__field}
         onKeyDown={keyDownHandler}
         onChange={onChange}
       />
-    </>
+    </div>
   );
 };
