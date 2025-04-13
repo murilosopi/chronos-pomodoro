@@ -1,9 +1,9 @@
-import { Button } from "../../components/Button";
+import { Button } from "../Button";
 import { PlayCircle } from "lucide-react";
-import { Input } from "../../components/Input";
+import { Input } from "../Input";
 import { formTaskLabel, formTaskPlaceholder } from "../../constants/form";
 import styles from "./CycleManager.module.css";
-import { CyclesHistory } from "../../components/CyclesHistory";
+import { CyclesHistory } from "../CyclesHistory";
 import { Cycle } from "../../types/classes/Cycle";
 import { useState } from "react";
 
@@ -11,9 +11,7 @@ type CycleManagerProps = {
   cycles?: Cycle[];
 };
 
-export const CycleManager = ({
-  cycles = [],
-}: CycleManagerProps) => {
+export const CycleManager = ({ cycles = [] }: CycleManagerProps) => {
   const [taskName, setTaskName] = useState("");
 
   const onSubmit = (e: React.SyntheticEvent) => {
