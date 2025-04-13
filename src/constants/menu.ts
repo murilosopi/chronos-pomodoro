@@ -5,5 +5,6 @@ export const menuTitles = {
   theme: {
     dark: 'Mudar para Tema Claro',
     light: 'Mudar para Tema Escuro'
-  }
+  },
+  info: 'Sobre a Técnica Pomodoro'
 }
