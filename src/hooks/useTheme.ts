@@ -16,7 +16,7 @@ export const useTheme = () => {
   });
 
   useEffect(() => {
-    document.querySelector("html")?.setAttribute(htmlDataTheme, theme);
+    document.documentElement.setAttribute(htmlDataTheme, theme);
 
     localStorage.setItem(themeKey, theme);
   }, [theme]);
