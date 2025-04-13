@@ -1,4 +1,4 @@
-import { CycleTypes } from "../types/enums/CycleType";
+import { CycleTypes } from "../types/enums/CycleTypes";
 
 export const cyclesHistoryTitle = "Ciclos:";
 

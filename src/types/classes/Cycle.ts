@@ -1,4 +1,4 @@
-import { CycleTypes } from "../enums/CycleType";
+import { CycleTypes } from "../enums/CycleTypes";
 
 export class Cycle {
   type: CycleTypes;
