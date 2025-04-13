@@ -1,14 +1,10 @@
 import React from "react";
 import styles from "./Button.module.css";
 
-type ButtonProps = {
-  children: React.ReactNode;
-  title?: string;
-  onClick?: (e: React.MouseEvent) => void | undefined;
-};
+type ButtonProps = React.ComponentProps<"button">;
 
-export const Button = ({ children = "", title = "", onClick }: ButtonProps) => (
-  <button title={title} className={styles.button} onClick={onClick}>
+export const Button = ({ className = "", children, ...props }: ButtonProps) => (
+  <button {...props} className={`${className} ${styles.button}`}>
     {children}
   </button>
 );

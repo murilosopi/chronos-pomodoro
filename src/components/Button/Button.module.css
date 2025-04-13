@@ -6,6 +6,7 @@
   padding: 1rem;
   border-radius: 1rem;
   transition: var(--transition-default) background-color;
+  text-align: center;
 }
 
 .button:hover {
