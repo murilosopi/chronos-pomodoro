@@ -9,7 +9,7 @@ export class CycleModel {
   completeDate?: Date;
   interruptDate?: Date;
 
-  constructor(type: CycleTypes, taskName: string) {
+  constructor({ type, taskName }: { type: CycleTypes; taskName: string }) {
     this.type = type;
     this.taskName = taskName;
   }

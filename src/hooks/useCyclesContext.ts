@@ -1,11 +1,26 @@
-import { useContext } from "react";
+import { useContext, useEffect } from "react";
 import { CyclesContext } from "../contexts/CyclesContext";
+import { CycleModel } from "../models/CycleModel";
 
 export const useCyclesContext = () => {
   const { state, setState } = useContext(CyclesContext);
 
+  useEffect(() => {
+    console.log("[state changed]", state);
+  }, [state]);
+
+  const addCycle = (newCycle: CycleModel) => {
+    setState((prevState) => {
+      const newState = prevState.clone();
+
+      newState.addCycle(newCycle);
+
+      return newState;
+    });
+  };
+
   return {
     state,
-    setState,
+    addCycle,
   };
 };
