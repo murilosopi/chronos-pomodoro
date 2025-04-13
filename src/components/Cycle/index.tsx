@@ -8,14 +8,7 @@ type CycleProps = {
 
 export const Cycle = ({ type }: CycleProps) => {
   const title = cycleTypesDefinitions[type].title;
+  const variant = styles[`cycle--${type}"`];
 
-  const variantByType = {
-    [CycleTypes.Rest]: styles["cycle--rest"],
-    [CycleTypes.Break]: styles["cycle--break"],
-    [CycleTypes.Focus]: styles["cycle--focus"],
-  };
-
-  return (
-    <span className={`${styles.cycle} ${variantByType[type]}`} title={title} />
-  );
+  return <span className={`${styles.cycle} ${variant}`} title={title} />;
 };

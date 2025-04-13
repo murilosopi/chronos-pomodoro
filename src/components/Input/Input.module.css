@@ -10,6 +10,16 @@
   border-bottom: 2px solid var(--primary);
   font-size: 1.8rem;
   text-align: center;
+  transition: var(--transition-default);
+}
+
+.input__field:is(:focus, :hover) {
+  border-color: var(--light);
+}
+
+.input__field:disabled {
+  border-color: var(--disabled);
+  color: var(--text-disabled);
 }
 
 .input__field::placeholder {

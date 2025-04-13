@@ -1,15 +1,24 @@
 .button {
   all: unset;
 
-  background-color: var(--primary);
-  color: var(--text-over-primary);
   padding: 1rem;
   border-radius: 1rem;
-  transition: var(--transition-default) background-color;
+  transition: var(--transition-default) filter;
   text-align: center;
 }
 
 .button:hover {
-  background-color: var(--primary-dark);
   cursor: pointer;
+  filter: brightness(80%);
+}
+
+.button,
+.button--primary {
+  background-color: var(--primary);
+  color: var(--text-over-primary);
+}
+
+.button--danger {
+  background-color: var(--danger);
+  color: var(--text-over-danger);
 }
