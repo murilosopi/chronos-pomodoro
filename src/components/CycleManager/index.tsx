@@ -7,6 +7,7 @@ import { CyclesHistory } from "../CyclesHistory";
 import { CycleModel } from "../../models/CycleModel";
 import { useRef } from "react";
 import { useCyclesContext } from "../../hooks/useCyclesContext";
+import { boldify } from "../../utils/text";
 
 export const CycleManager = () => {
   const { state, addCycle } = useCyclesContext();
@@ -21,7 +22,7 @@ export const CycleManager = () => {
     const taskName = taskNameInput.current?.value.trim();
 
     if (!taskName) {
-      alert("tá vazio aí, vagabundo!");
+      return;
     }
 
     const newCycle = new CycleModel({ taskName, type: state.nextCycleType() });
@@ -31,6 +32,10 @@ export const CycleManager = () => {
 
   return (
     <form onSubmit={handleStartNewCycle} className={styles["cycle-manager"]}>
+      <p className={styles.description}>
+        {boldify(state.getCurrentCycleDescription())}
+      </p>
+
       {!!state.activeCycles.length && (
         <CyclesHistory cycles={state.activeCycles} />
       )}

@@ -1,5 +1,9 @@
 .cycle-manager {
-  display: flex; 
+  display: flex;
   flex-direction: column;
   gap: 2rem;
+}
+
+.description {
+  text-align: center;
 }

@@ -1,3 +1,4 @@
+import { cycleTypesDefinitions } from "../constants/cycle";
 import { CycleTypes } from "../enums/CycleTypes";
 import { CycleModel } from "./CycleModel";
 
@@ -33,6 +34,24 @@ export class CyclesStateModel {
     if (this.activeCycles.length === 8) this.activeCycles.splice(0);
 
     this.activeCycles.push(cycle);
+
+    this.secondsRemaining = this.timeConfig[cycle.type];
+  }
+
+  getCurrentCycleDescription(): string {
+    const definitions = cycleTypesDefinitions;
+
+    if (!this.currentCycle) {
+      return definitions.focus.description.notStarted;
+    }
+
+    if (this.currentCycle.completed()) {
+      const nextType = this.nextCycleType();
+      return definitions[nextType].description.notStarted;
+    }
+
+    const currentType = this.currentCycle.type;
+    return definitions[currentType].description.running;
   }
 
   clone(): CyclesStateModel {
