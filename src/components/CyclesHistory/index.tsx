@@ -1,17 +1,13 @@
-import { Cycle } from "../../types/classes/Cycle";
+import { CycleModel } from "../../models/CycleModel";
 import { Cycle as CycleComponent } from "../Cycle";
 import styles from "./CyclesHistory.module.css";
-import {
-  cyclesHistoryTitle,
-} from "../../constants/cycle";
+import { cyclesHistoryTitle } from "../../constants/cycle";
 
 type CyclesHistoryProps = {
-  cycles?: Cycle[];
+  cycles?: CycleModel[];
 };
 
-export const CyclesHistory = ({
-  cycles = [],
-}: CyclesHistoryProps) => {
+export const CyclesHistory = ({ cycles = [] }: CyclesHistoryProps) => {
   return (
     <div className={styles.cycles_history}>
       <p>{cyclesHistoryTitle}</p>

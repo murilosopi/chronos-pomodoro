@@ -1,4 +1,4 @@
-import { Themes } from "../types/enums/Themes";
+import { Themes } from "../enums/Themes";
 
 export const menuTitles = {
   home: "Página Inicial",

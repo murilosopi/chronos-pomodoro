@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { themeKey } from "../constants/storage";
-import { Themes } from "../types/enums/Themes";
+import { Themes } from "../enums/Themes";
 import { htmlDataTheme } from "../constants/domAttributes";
 
 export const useTheme = () => {

@@ -9,7 +9,7 @@ import {
 import { Button } from "../../components/Button";
 import styles from "./Menu.module.css";
 import { menuTitles } from "../../constants/menu";
-import { Themes } from "../../types/enums/Themes";
+import { Themes } from "../../enums/Themes";
 import { useTheme } from "../../hooks/useTheme";
 
 export const Menu = () => {

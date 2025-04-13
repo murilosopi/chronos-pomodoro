@@ -4,11 +4,11 @@ import { Input } from "../Input";
 import { formTaskLabel, formTaskPlaceholder } from "../../constants/form";
 import styles from "./CycleManager.module.css";
 import { CyclesHistory } from "../CyclesHistory";
-import { Cycle } from "../../types/classes/Cycle";
+import { CycleModel } from "../../models/CycleModel";
 import { useState } from "react";
 
 type CycleManagerProps = {
-  cycles?: Cycle[];
+  cycles?: CycleModel[];
 };
 
 export const CycleManager = ({ cycles = [] }: CycleManagerProps) => {

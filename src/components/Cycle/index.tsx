@@ -1,6 +1,6 @@
 import styles from "./Cycle.module.css";
 import { cycleTypesDefinitions } from "../../constants/cycle";
-import { CycleTypes } from "../../types/enums/CycleTypes";
+import { CycleTypes } from "../../enums/CycleTypes";
 
 type CycleProps = {
   type: CycleTypes;
