@@ -1,4 +1,3 @@
-import { cycleTypesDefinitions } from "../constants/cycle";
 import { CycleTypes } from "../enums/CycleTypes";
 import { CycleModel } from "./CycleModel";
 
@@ -9,7 +8,6 @@ type TimeConfigType = {
 export class CyclesStateModel {
   cycles: CycleModel[] = [];
   activeCycles: CycleModel[] = [];
-  currentCycle: CycleModel | null = null;
   secondsRemaining: number = 0;
   timeConfig: TimeConfigType = {
     [CycleTypes.Focus]: 25 * 60,
@@ -17,18 +15,7 @@ export class CyclesStateModel {
     [CycleTypes.Rest]: 5 * 60,
   };
 
-  nextCycleType() {
-    if (!this.currentCycle || this.currentCycle?.type !== CycleTypes.Focus)
-      return CycleTypes.Focus;
-
-    if (this.activeCycles.length == 7) return CycleTypes.Break;
-
-    return CycleTypes.Rest;
-  }
-
   addCycle(cycle: CycleModel) {
-    this.currentCycle = cycle;
-
     this.cycles.push(cycle);
 
     if (this.activeCycles.length === 8) this.activeCycles.splice(0);
@@ -36,22 +23,6 @@ export class CyclesStateModel {
     this.activeCycles.push(cycle);
 
     this.secondsRemaining = this.timeConfig[cycle.type];
-  }
-
-  getCurrentCycleDescription(): string {
-    const definitions = cycleTypesDefinitions;
-
-    if (!this.currentCycle) {
-      return definitions.focus.description.notStarted;
-    }
-
-    if (this.currentCycle.completed()) {
-      const nextType = this.nextCycleType();
-      return definitions[nextType].description.notStarted;
-    }
-
-    const currentType = this.currentCycle.type;
-    return definitions[currentType].description.running;
   }
 
   clone(): CyclesStateModel {
@@ -62,8 +33,6 @@ export class CyclesStateModel {
       timeConfig: { ...this.timeConfig },
       cycles: [...this.cycles],
       activeCycles: [...this.activeCycles],
-      currentCycle:
-        this.currentCycle === null ? null : { ...this.currentCycle },
     });
 
     return newCycleState;

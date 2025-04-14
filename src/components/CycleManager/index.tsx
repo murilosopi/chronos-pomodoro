@@ -8,6 +8,7 @@ import { CycleModel } from "../../models/CycleModel";
 import { useRef } from "react";
 import { useCyclesContext } from "../../hooks/useCyclesContext";
 import { boldify } from "../../utils/text";
+import { CycleService } from "../../services/CycleService";
 
 export const CycleManager = () => {
   const { state, addCycle } = useCyclesContext();
@@ -25,7 +26,10 @@ export const CycleManager = () => {
       return;
     }
 
-    const newCycle = new CycleModel({ taskName, type: state.nextCycleType() });
+    const newCycle = new CycleModel({
+      taskName,
+      type: CycleService.getNextType(state.activeCycles),
+    });
 
     addCycle(newCycle);
   };
@@ -33,7 +37,7 @@ export const CycleManager = () => {
   return (
     <form onSubmit={handleStartNewCycle} className={styles["cycle-manager"]}>
       <p className={styles.description}>
-        {boldify(state.getCurrentCycleDescription())}
+        {boldify(CycleService.getCurrentDescription(state.activeCycles))}
       </p>
 
       {!!state.activeCycles.length && (
