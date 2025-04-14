@@ -4,7 +4,7 @@ import { cycleTypesDefinitions } from "../constants/cycle";
 
 export class CycleService {
   static getNextType(active: CycleModel[]): CycleTypes {
-    const lastCycle = active[active.length - 1];
+    const lastCycle = this.getLastCycle(active);
 
     if (!lastCycle || lastCycle.type !== CycleTypes.Focus)
       return CycleTypes.Focus;
@@ -12,26 +12,28 @@ export class CycleService {
   }
 
   static getCurrentDescription(active: CycleModel[]): string {
-    const current = active[active.length - 1];
+    const lastCycle = this.getLastCycle(active);
 
     const definitions = cycleTypesDefinitions;
 
-    if (!current) {
+    if (!lastCycle) {
       return definitions.focus.description.notStarted;
     }
 
-    if (current.completed()) {
+    if (!lastCycle.running()) {
       const nextType = this.getNextType(active);
       return definitions[nextType].description.notStarted;
     }
 
-    const currentType = current.type;
-    return definitions[currentType].description.running;
+    const lastType = lastCycle.type;
+    return definitions[lastType].description.running;
   }
 
   static hasRunningCycle(active: CycleModel[]): boolean {
-    const lastCycle = active[active.length - 1];
+    return this.getLastCycle(active)?.running() || false;
+  }
 
-    return lastCycle && !lastCycle.completed();
+  static getLastCycle(active: CycleModel[]): CycleModel | null {
+    return active[active.length - 1] || null;
   }
 }
