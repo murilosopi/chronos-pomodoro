@@ -1,4 +1,5 @@
 import { CycleTypes } from "../enums/CycleTypes";
+import { CycleService } from "../services/CycleService";
 import { CycleModel } from "./CycleModel";
 
 type TimeConfigType = {
@@ -23,6 +24,16 @@ export class CyclesStateModel {
     this.activeCycles.push(cycle);
 
     this.secondsRemaining = this.timeConfig[cycle.type];
+  }
+
+  interruptLastCycle() {
+    const lastCycle = CycleService.getLastCycle(this.activeCycles);
+
+    if (!lastCycle) return;
+
+    lastCycle.interruptDate = new Date();
+
+    this.secondsRemaining = 0;
   }
 
   clone(): CyclesStateModel {

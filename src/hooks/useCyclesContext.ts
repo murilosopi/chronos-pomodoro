@@ -19,8 +19,19 @@ export const useCyclesContext = () => {
     });
   };
 
+  const interruptCurrentCycle = () => {
+    setState((prevState) => {
+      const newState = prevState.clone();
+
+      newState.interruptLastCycle();
+
+      return newState;
+    });
+  };
+
   return {
     state,
     addCycle,
+    interruptCurrentCycle,
   };
 };

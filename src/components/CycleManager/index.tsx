@@ -1,5 +1,5 @@
 import { Button } from "../Button";
-import { PlayCircle } from "lucide-react";
+import { PlayCircle, StopCircle } from "lucide-react";
 import { Input } from "../Input";
 import { formTaskLabel, formTaskPlaceholder } from "../../constants/form";
 import styles from "./CycleManager.module.css";
@@ -9,9 +9,10 @@ import React, { useRef } from "react";
 import { useCyclesContext } from "../../hooks/useCyclesContext";
 import { boldify } from "../../utils/boldify";
 import { CycleService } from "../../services/CycleService";
+import { cancelCycleQuestion } from "../../constants/statics";
 
 export const CycleManager = () => {
-  const { state, addCycle } = useCyclesContext();
+  const { state, addCycle, interruptCurrentCycle } = useCyclesContext();
 
   const hasCycleRunning = CycleService.hasRunningCycle(state.activeCycles);
 
@@ -21,9 +22,7 @@ export const CycleManager = () => {
 
   const taskNameInput = useRef<HTMLInputElement>(null);
 
-  const handleStartNewCycle = (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-
+  const addCycleToState = () => {
     if (taskNameInput.current === null) return;
 
     const taskName = taskNameInput.current?.value.trim();
@@ -38,6 +37,27 @@ export const CycleManager = () => {
         type: CycleService.getNextType(state.activeCycles),
       })
     );
+  };
+
+  const handleStartNewCycle = (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+
+    addCycleToState();
+  };
+
+  const handleCycleStartPause = (e: React.MouseEvent<HTMLButtonElement>) => {
+    e.preventDefault();
+
+    if (!hasCycleRunning) {
+      addCycleToState();
+      return;
+    }
+
+    const cancelCycle = confirm(cancelCycleQuestion);
+
+    if (cancelCycle) {
+      interruptCurrentCycle();
+    }
   };
 
   return (
@@ -55,8 +75,11 @@ export const CycleManager = () => {
         ref={taskNameInput}
       />
 
-      <Button>
-        <PlayCircle />
+      <Button
+        variant={hasCycleRunning ? "danger" : "primary"}
+        onClick={handleCycleStartPause}
+      >
+        {hasCycleRunning ? <StopCircle /> : <PlayCircle />}
       </Button>
     </form>
   );
