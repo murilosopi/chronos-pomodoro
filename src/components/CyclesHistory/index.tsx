@@ -13,8 +13,8 @@ export const CyclesHistory = ({ cycles = [] }: CyclesHistoryProps) => {
       <p>{cyclesHistoryTitle}</p>
 
       <ol className={styles.cycles_history__list}>
-        {cycles.map((c, index) => (
-          <CycleComponent key={index} type={c.type} />
+        {cycles.map((c) => (
+          <CycleComponent key={`${c.id}_${c.type}`} type={c.type} />
         ))}
       </ol>
     </div>
