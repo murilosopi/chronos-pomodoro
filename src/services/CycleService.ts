@@ -28,4 +28,10 @@ export class CycleService {
     const currentType = current.type;
     return definitions[currentType].description.running;
   }
+
+  static hasRunningCycle(active: CycleModel[]): boolean {
+    const lastCycle = active[active.length - 1];
+
+    return lastCycle && !lastCycle.completed();
+  }
 }
