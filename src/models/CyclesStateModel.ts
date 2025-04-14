@@ -31,8 +31,8 @@ export class CyclesStateModel {
     Object.assign(newCycleState, {
       ...this,
       timeConfig: { ...this.timeConfig },
-      cycles: [...this.cycles],
-      activeCycles: [...this.activeCycles],
+      cycles: this.cycles.map((c) => c.clone()),
+      activeCycles: this.activeCycles.map((c) => c.clone()),
     });
 
     return newCycleState;
