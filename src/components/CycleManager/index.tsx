@@ -7,7 +7,7 @@ import { CyclesHistory } from "../CyclesHistory";
 import { CycleModel } from "../../models/CycleModel";
 import { useRef } from "react";
 import { useCyclesContext } from "../../hooks/useCyclesContext";
-import { boldify } from "../../utils/text";
+import { boldify } from "../../utils/boldify";
 import { CycleService } from "../../services/CycleService";
 
 export const CycleManager = () => {
