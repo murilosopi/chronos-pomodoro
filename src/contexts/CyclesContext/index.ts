@@ -1,6 +1,6 @@
 import { createContext } from "react";
-import { CyclesStateModel } from "../models/CyclesStateModel";
-import { initialCyclesState } from "../constants/initialCyclesState";
+import { CyclesStateModel } from "../../models/CyclesStateModel";
+import { initialCyclesState } from "../../constants/initialCyclesState";
 
 type CyclesContextProps = {
   state: CyclesStateModel;

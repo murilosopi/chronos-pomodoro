@@ -1,6 +1,6 @@
 import { useState } from "react";
-import { CyclesContext } from "../contexts/CyclesContext";
-import { initialCyclesState } from "../constants/initialCyclesState";
+import { CyclesContext } from ".";
+import { initialCyclesState } from "../../constants/initialCyclesState";
 
 type CyclesContextProviderProps = {
   children: React.ReactNode;

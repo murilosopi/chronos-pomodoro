@@ -1,6 +1,6 @@
-import { useCyclesContext } from "../../hooks/useCyclesContext";
 import styles from "./Timer.module.css";
 import { formatSecondsToTime } from "../../utils/formatSecondsToTime";
+import { useCyclesContext } from "../../contexts/CyclesContext/useCyclesContext";
 
 export const Timer = () => {
   const { state } = useCyclesContext();

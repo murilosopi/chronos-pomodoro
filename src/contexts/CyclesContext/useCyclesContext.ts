@@ -1,6 +1,6 @@
 import { useContext, useEffect } from "react";
-import { CyclesContext } from "../contexts/CyclesContext";
-import { CycleModel } from "../models/CycleModel";
+import { CyclesContext } from ".";
+import { CycleModel } from "../../models/CycleModel";
 
 export const useCyclesContext = () => {
   const { state, setState } = useContext(CyclesContext);

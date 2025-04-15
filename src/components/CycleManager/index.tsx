@@ -6,10 +6,10 @@ import styles from "./CycleManager.module.css";
 import { CyclesHistory } from "../CyclesHistory";
 import { CycleModel } from "../../models/CycleModel";
 import React, { useRef } from "react";
-import { useCyclesContext } from "../../hooks/useCyclesContext";
 import { boldify } from "../../utils/boldify";
 import { CycleService } from "../../services/CycleService";
 import { cancelCycleQuestion } from "../../constants/statics";
+import { useCyclesContext } from "../../contexts/CyclesContext/useCyclesContext";
 
 export const CycleManager = () => {
   const { state, addCycle, interruptCurrentCycle } = useCyclesContext();
