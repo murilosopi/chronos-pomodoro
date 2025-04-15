@@ -10,9 +10,10 @@ import { boldify } from "../../utils/boldify";
 import { CycleService } from "../../services/CycleService";
 import { cancelCycleQuestion } from "../../constants/statics";
 import { useCyclesContext } from "../../contexts/CyclesContext/useCyclesContext";
+import { CyclesActionTypes } from "../../contexts/CyclesContext/actions";
 
 export const CycleManager = () => {
-  const { state, addCycle, interruptCurrentCycle } = useCyclesContext();
+  const { state, dispatch } = useCyclesContext();
 
   const hasCycleRunning = CycleService.hasRunningCycle(state.activeCycles);
 
@@ -31,12 +32,13 @@ export const CycleManager = () => {
       return;
     }
 
-    addCycle(
-      new CycleModel({
+    dispatch({
+      type: CyclesActionTypes.START_CYCLE,
+      payload: new CycleModel({
         taskName,
         type: CycleService.getNextType(state.activeCycles),
-      })
-    );
+      }),
+    });
   };
 
   const handleStartNewCycle = (e: React.FormEvent<HTMLFormElement>) => {
@@ -56,7 +58,9 @@ export const CycleManager = () => {
     const cancelCycle = confirm(cancelCycleQuestion);
 
     if (cancelCycle) {
-      interruptCurrentCycle();
+      dispatch({
+        type: CyclesActionTypes.INTERRUPT_LAST_CYCLE,
+      });
     }
   };
 
