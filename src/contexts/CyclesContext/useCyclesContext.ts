@@ -2,7 +2,8 @@ import { useContext, useEffect } from "react";
 import { CyclesContext } from ".";
 
 export const useCyclesContext = () => {
-  const { state, dispatch } = useContext(CyclesContext);
+  const { state, interruptLastCycle, startNewCycle } =
+    useContext(CyclesContext);
 
   useEffect(() => {
     console.log("[state changed]", state);
@@ -10,6 +11,7 @@ export const useCyclesContext = () => {
 
   return {
     state,
-    dispatch,
+    interruptLastCycle,
+    startNewCycle,
   };
 };

@@ -1,14 +1,16 @@
 import { createContext } from "react";
 import { CyclesStateModel } from "../../models/CyclesStateModel";
 import { initialCyclesState } from "../../constants/initialCyclesState";
-import { CycleActionModel } from "./actions";
+import { CycleModel } from "../../models/CycleModel";
 
 type CyclesContextProps = {
   state: CyclesStateModel;
-  dispatch: React.ActionDispatch<[action: CycleActionModel]>;
+  startNewCycle: (cycle: CycleModel) => void;
+  interruptLastCycle: () => void;
 };
 
 export const CyclesContext = createContext<CyclesContextProps>({
   state: initialCyclesState,
-  dispatch: () => {},
+  startNewCycle: () => {},
+  interruptLastCycle: () => {},
 });
