@@ -6,20 +6,15 @@ import styles from "./CycleManager.module.css";
 import { CyclesHistory } from "../CyclesHistory";
 import { CycleModel } from "../../models/CycleModel";
 import React, { useRef } from "react";
-import { boldify } from "../../utils/boldify";
 import { CycleService } from "../../services/CycleService";
 import { cancelCycleQuestion } from "../../constants/statics";
 import { useCyclesContext } from "../../contexts/CyclesContext/useCyclesContext";
+import { CyclesTip } from "../CyclesTip";
 
 export const CycleManager = () => {
   const { state, startNewCycle, interruptLastCycle } = useCyclesContext();
 
   const hasCycleRunning = CycleService.hasRunningCycle(state.activeCycles);
-
-  const cycleDescription = boldify(
-    CycleService.getCurrentDescription(state.activeCycles)
-  );
-
   const taskNameInput = useRef<HTMLInputElement>(null);
 
   const addCycleToState = () => {
@@ -62,7 +57,7 @@ export const CycleManager = () => {
 
   return (
     <form onSubmit={handleStartNewCycle} className={styles["cycle-manager"]}>
-      <p className={styles.description}>{cycleDescription}</p>
+      <CyclesTip />
 
       {!!state.activeCycles.length && (
         <CyclesHistory cycles={state.activeCycles} />
