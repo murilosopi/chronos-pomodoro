@@ -13,4 +13,7 @@ export const notify = {
   info(message: string) {
     toast.info(message);
   },
+  clear() {
+    toast.dismiss();
+  },
 };

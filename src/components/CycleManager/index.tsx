@@ -27,6 +27,7 @@ export const CycleManager = () => {
 
   const handleCycleStartPause = (e: React.SyntheticEvent) => {
     e.preventDefault();
+    notify.clear();
 
     if (!hasCycleRunning) {
       if (taskNameInput.current === null) return;
