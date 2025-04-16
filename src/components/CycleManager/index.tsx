@@ -5,46 +5,40 @@ import { formTaskLabel, formTaskPlaceholder } from "../../constants/form";
 import styles from "./CycleManager.module.css";
 import { CyclesHistory } from "../CyclesHistory";
 import { CycleModel } from "../../models/CycleModel";
-import React, { useRef } from "react";
+import React, { useEffect, useRef } from "react";
 import { CycleService } from "../../services/CycleService";
 import { cancelCycleQuestion } from "../../constants/statics";
 import { useCyclesContext } from "../../contexts/CyclesContext/useCyclesContext";
 import { CyclesTip } from "../CyclesTip";
+import { loadBeep } from "../../utils/loadBeep";
 
 export const CycleManager = () => {
   const { state, startNewCycle, interruptLastCycle } = useCyclesContext();
 
+  const currentCycle = CycleService.getLastCycle(state.activeCycles);
   const hasCycleRunning = CycleService.hasRunningCycle(state.activeCycles);
+
   const taskNameInput = useRef<HTMLInputElement>(null);
+  const completeAudioRef = useRef<ReturnType<typeof loadBeep>>(null);
 
-  const addCycleToState = () => {
-    if (taskNameInput.current === null) return;
-
-    const taskName = taskNameInput.current?.value.trim();
-
-    if (!taskName) {
-      return;
-    }
-
-    startNewCycle(
-      new CycleModel({
-        taskName,
-        type: CycleService.getNextType(state.activeCycles),
-      })
-    );
-  };
-
-  const handleStartNewCycle = (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-
-    addCycleToState();
-  };
-
-  const handleCycleStartPause = (e: React.MouseEvent<HTMLButtonElement>) => {
+  const handleCycleStartPause = (e: React.SyntheticEvent) => {
     e.preventDefault();
 
     if (!hasCycleRunning) {
-      addCycleToState();
+      if (taskNameInput.current === null) return;
+
+      completeAudioRef.current = loadBeep();
+
+      const taskName = taskNameInput.current?.value.trim();
+
+      if (!taskName) return;
+
+      startNewCycle(
+        new CycleModel({
+          taskName,
+          type: CycleService.getNextType(state.activeCycles),
+        })
+      );
       return;
     }
 
@@ -55,8 +49,14 @@ export const CycleManager = () => {
     }
   };
 
+  useEffect(() => {
+    if (!currentCycle?.completeDate || !completeAudioRef.current) return;
+
+    completeAudioRef.current();
+  }, [currentCycle?.completeDate]);
+
   return (
-    <form onSubmit={handleStartNewCycle} className={styles["cycle-manager"]}>
+    <form onSubmit={handleCycleStartPause} className={styles["cycle-manager"]}>
       <CyclesTip />
 
       {!!state.activeCycles.length && (
