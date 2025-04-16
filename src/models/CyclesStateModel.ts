@@ -36,6 +36,16 @@ export class CyclesStateModel {
     this.secondsRemaining = 0;
   }
 
+  completeLastCycle() {
+    const lastCycle = CycleService.getLastCycle(this.activeCycles);
+
+    if (!lastCycle) return;
+
+    lastCycle.completeDate = new Date();
+
+    this.secondsRemaining = 0;
+  }
+
   clone(): CyclesStateModel {
     const newCycleState = new CyclesStateModel();
 

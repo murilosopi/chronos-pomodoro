@@ -6,19 +6,26 @@ export const cyclesReducer = (
   prevState: CyclesStateModel,
   action: CycleActionModel
 ): CyclesStateModel => {
+  const newState = prevState.clone();
+
   switch (action.type) {
     case CyclesActionTypes.START_CYCLE: {
-      const newState = prevState.clone();
-
       newState.addCycle(action.payload);
 
       return newState;
     }
     case CyclesActionTypes.INTERRUPT_LAST_CYCLE: {
-      const newState = prevState.clone();
-
       newState.interruptLastCycle();
 
+      return newState;
+    }
+    case CyclesActionTypes.COMPLETE_LAST_CYCLE: {
+      newState.completeLastCycle();
+
+      return newState;
+    }
+    case CyclesActionTypes.UPDATE_TIMER: {
+      newState.secondsRemaining = action.payload;
       return newState;
     }
     case CyclesActionTypes.RESET_STATE: {
