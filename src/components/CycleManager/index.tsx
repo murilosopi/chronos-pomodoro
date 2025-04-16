@@ -10,6 +10,7 @@ import { CycleService } from "../../services/CycleService";
 import {
   cancelCycleQuestion,
   emptyTaskNameWarning,
+  interruptedCycleWarning,
 } from "../../constants/statics";
 import { useCyclesContext } from "../../contexts/CyclesContext/useCyclesContext";
 import { CyclesTip } from "../CyclesTip";
@@ -54,6 +55,8 @@ export const CycleManager = () => {
 
     if (cancelCycle) {
       interruptLastCycle();
+
+      notify.error(interruptedCycleWarning);
     }
   };
 
