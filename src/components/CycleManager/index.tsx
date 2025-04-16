@@ -7,10 +7,14 @@ import { CyclesHistory } from "../CyclesHistory";
 import { CycleModel } from "../../models/CycleModel";
 import React, { useEffect, useRef } from "react";
 import { CycleService } from "../../services/CycleService";
-import { cancelCycleQuestion } from "../../constants/statics";
+import {
+  cancelCycleQuestion,
+  emptyTaskNameWarning,
+} from "../../constants/statics";
 import { useCyclesContext } from "../../contexts/CyclesContext/useCyclesContext";
 import { CyclesTip } from "../CyclesTip";
 import { loadBeep } from "../../utils/loadBeep";
+import { notify } from "../../adapters/notify";
 
 export const CycleManager = () => {
   const { state, startNewCycle, interruptLastCycle } = useCyclesContext();
@@ -31,7 +35,10 @@ export const CycleManager = () => {
 
       const taskName = taskNameInput.current?.value.trim();
 
-      if (!taskName) return;
+      if (!taskName) {
+        notify.warning(emptyTaskNameWarning);
+        return;
+      }
 
       startNewCycle(
         new CycleModel({
