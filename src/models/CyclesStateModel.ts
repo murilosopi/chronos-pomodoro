@@ -49,11 +49,17 @@ export class CyclesStateModel {
   clone(): CyclesStateModel {
     const newCycleState = new CyclesStateModel();
 
+    const activeCyclesIds = new Set(this.activeCycles.map(({ id }) => id));
+
+    const cycles = this.cycles.map((c) => c.clone());
+
+    const activeCycles = cycles.filter(({ id }) => activeCyclesIds.has(id));
+
     Object.assign(newCycleState, {
       ...this,
       timeConfig: { ...this.timeConfig },
-      cycles: this.cycles.map((c) => c.clone()),
-      activeCycles: this.activeCycles.map((c) => c.clone()),
+      cycles,
+      activeCycles,
     });
 
     return newCycleState;
