@@ -1,5 +1,6 @@
 import { v4 as uuidv4 } from "uuid";
 import { CycleTypes } from "../enums/CycleTypes";
+import { CycleStatus } from "../enums/CycleStatus";
 
 type CycleModelConstructorProps = {
   taskName: string;
@@ -48,6 +49,13 @@ export class CycleModel {
 
   running(): boolean {
     return !this.interruptDate && !this.completeDate && !!this.startDate;
+  }
+
+  status(): CycleStatus {
+    if (this.completed()) return CycleStatus.Completed;
+    if (this.interrupted()) return CycleStatus.Interrupted;
+
+    return CycleStatus.Running;
   }
 
   clone(): CycleModel {
