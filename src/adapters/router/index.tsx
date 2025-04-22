@@ -1,7 +1,7 @@
 import { BrowserRouter, Routes, Route, Link } from "react-router";
 import { NotFound } from "../../pages/NotFound";
 import { Home } from "../../pages/Home";
-import { routes } from "../../constants/routes";
+import { Route as RouteType, routes } from "../../constants/routes";
 import { AboutPomodoro } from "../../pages/AboutPomodoro";
 import { useEffect } from "react";
 import { useRouter } from "./hook";
@@ -34,7 +34,7 @@ export const Router = () => {
   );
 };
 
-type RouterLinkProps = { to: string; children: React.ReactNode };
-export const RouterLink = ({ to, children }: RouterLinkProps) => {
-  return <Link to={to}>{children}</Link>;
+type RouterLinkProps = { to: RouteType; children: React.ReactNode };
+export const RouterLink = ({ to: { path }, children }: RouterLinkProps) => {
+  return <Link to={path}>{children}</Link>;
 };
