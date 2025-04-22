@@ -59,18 +59,13 @@ export class CycleModel {
   }
 
   clone(): CycleModel {
-    const newCycleModel = new CycleModel({
+    return new CycleModel({
+      id: this.id,
       taskName: this.taskName,
       type: this.type,
-    });
-
-    Object.assign(newCycleModel, {
-      ...this,
-      startDate: this.startDate ? new Date(this.startDate) : null,
+      startDate: this.startDate ? new Date(this.startDate) : new Date(),
       completeDate: this.completeDate ? new Date(this.completeDate) : null,
       interruptDate: this.interruptDate ? new Date(this.interruptDate) : null,
     });
-
-    return newCycleModel;
   }
 }
