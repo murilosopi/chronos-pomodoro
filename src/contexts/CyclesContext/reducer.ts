@@ -1,5 +1,7 @@
 import { initialCyclesState } from "../../constants/initialCyclesState";
 import { CyclesStateModel } from "../../models/CyclesStateModel";
+import { CycleService } from "../../services/CycleService";
+import { CyclesStateStore } from "../../stores/CyclesStateStore";
 import { CycleActionModel, CyclesActionTypes } from "./actions";
 
 export const cyclesReducer = (
@@ -34,4 +36,25 @@ export const cyclesReducer = (
   }
 
   return prevState;
+};
+
+export const cyclesReducerInitializer = () => {
+  try {
+    const recoveredState = CyclesStateStore.recover();
+
+    if (recoveredState) {
+      const hasRunningCycle = CycleService.hasRunningCycle(
+        recoveredState.activeCycles
+      );
+      if (hasRunningCycle) {
+        recoveredState.interruptLastCycle();
+      }
+
+      return recoveredState;
+    }
+  } catch (error) {
+    console.warn("error on recover stored state", error);
+  }
+
+  return initialCyclesState;
 };

@@ -1,18 +1,23 @@
 import { useEffect, useReducer } from "react";
 import { CyclesContext } from ".";
 import { initialCyclesState } from "../../constants/initialCyclesState";
-import { cyclesReducer } from "./reducer";
+import { cyclesReducer, cyclesReducerInitializer } from "./reducer";
 import { CyclesActionTypes } from "./actions";
 import { CycleModel } from "../../models/CycleModel";
 import { TimerWorkerManager } from "../../workers/timerWorkerManager";
 import { CycleService } from "../../services/CycleService";
+import { CyclesStateStore } from "../../stores/CyclesStateStore";
 type CyclesContextProviderProps = {
   children: React.ReactNode;
 };
 export const CyclesContextProvider = ({
   children,
 }: CyclesContextProviderProps) => {
-  const [state, dispatch] = useReducer(cyclesReducer, initialCyclesState);
+  const [state, dispatch] = useReducer(
+    cyclesReducer,
+    initialCyclesState,
+    cyclesReducerInitializer
+  );
 
   const startNewCycle = (cycle: CycleModel) => {
     dispatch({
@@ -53,9 +58,13 @@ export const CyclesContextProvider = ({
     }
 
     worker.postState(state);
+  }, [state, worker]);
+
+  useEffect(() => {
+    CyclesStateStore.store(state);
 
     console.log("[state changed]", state);
-  }, [state, worker]);
+  }, [state]);
 
   return (
     <CyclesContext.Provider
