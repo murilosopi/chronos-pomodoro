@@ -6,6 +6,7 @@ import { AboutPomodoro } from "../../pages/AboutPomodoro";
 import { useEffect } from "react";
 import { useRouter } from "./hook";
 import { History } from "../../pages/History";
+import { Settings } from "../../pages/Settings";
 
 const RouterRoutes = () => {
   const { getCurrentRoute } = useRouter();
@@ -23,6 +24,7 @@ const RouterRoutes = () => {
       <Route path={routes.home.path} Component={Home} />
       <Route path={routes.aboutPomodoro.path} Component={AboutPomodoro} />
       <Route path={routes.history.path} Component={History} />
+      <Route path={routes.settings.path} Component={Settings} />
       <Route path="*" Component={NotFound} />
     </Routes>
   );
