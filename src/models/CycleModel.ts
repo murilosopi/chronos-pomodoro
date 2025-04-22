@@ -1,17 +1,37 @@
 import { v4 as uuidv4 } from "uuid";
 import { CycleTypes } from "../enums/CycleTypes";
 
+type CycleModelConstructorProps = {
+  taskName: string;
+  id?: string;
+  type: CycleTypes;
+  startDate?: Date;
+  completeDate?: Date | null;
+  interruptDate?: Date | null;
+};
+
 export class CycleModel {
   taskName: string;
-  id: string = uuidv4();
+  id: string;
   type: CycleTypes;
-  startDate: Date = new Date();
-  completeDate: Date | null = null;
-  interruptDate: Date | null = null;
+  startDate: Date;
+  completeDate: Date | null;
+  interruptDate: Date | null;
 
-  constructor({ type, taskName }: { type: CycleTypes; taskName: string }) {
+  constructor({
+    type,
+    taskName,
+    id = uuidv4(),
+    startDate = new Date(),
+    completeDate = null,
+    interruptDate = null,
+  }: CycleModelConstructorProps) {
+    this.id = id;
     this.type = type;
     this.taskName = taskName;
+    this.startDate = startDate;
+    this.completeDate = completeDate;
+    this.interruptDate = interruptDate;
   }
 
   started(): boolean {
