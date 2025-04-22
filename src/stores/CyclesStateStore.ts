@@ -1,5 +1,5 @@
 import { stateKey } from "../constants/storage";
-import { CycleTypes, isCycleType } from "../enums/CycleTypes";
+import { allCycleTypes, CycleTypes, isCycleType } from "../enums/CycleTypes";
 import { CycleModel } from "../models/CycleModel";
 // import { CycleModel } from "../models/CycleModel";
 // import { CycleModel } from "../models/CycleModel";
@@ -53,7 +53,7 @@ export class CyclesStateStore {
 
     state.secondsRemaining = storedSecondsRemaining;
 
-    Object.values(CycleTypes).forEach((type: CycleTypes) => {
+    allCycleTypes.forEach((type: CycleTypes) => {
       if (storedTimeConfig[type])
         state.timeConfig[type] = storedTimeConfig[type];
     });
