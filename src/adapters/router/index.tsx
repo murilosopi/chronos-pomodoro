@@ -5,6 +5,7 @@ import { Route as RouteType, routes } from "../../constants/routes";
 import { AboutPomodoro } from "../../pages/AboutPomodoro";
 import { useEffect } from "react";
 import { useRouter } from "./hook";
+import { History } from "../../pages/History";
 
 const RouterRoutes = () => {
   const { getCurrentRoute } = useRouter();
@@ -21,6 +22,7 @@ const RouterRoutes = () => {
     <Routes>
       <Route path={routes.home.path} Component={Home} />
       <Route path={routes.aboutPomodoro.path} Component={AboutPomodoro} />
+      <Route path={routes.history.path} Component={History} />
       <Route path="*" Component={NotFound} />
     </Routes>
   );

@@ -30,6 +30,11 @@ export const cyclesReducer = (
       newState.secondsRemaining = action.payload;
       return newState;
     }
+    case CyclesActionTypes.CLEAR_HISTORY: {
+      newState.clearCycles();
+
+      return newState;
+    }
     case CyclesActionTypes.RESET_STATE: {
       return initialCyclesState;
     }

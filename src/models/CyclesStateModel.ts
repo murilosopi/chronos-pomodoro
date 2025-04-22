@@ -46,6 +46,12 @@ export class CyclesStateModel {
     this.secondsRemaining = 0;
   }
 
+  clearCycles() {
+    this.cycles = [];
+    this.activeCycles = [];
+    this.secondsRemaining = 0;
+  }
+
   clone(): CyclesStateModel {
     const newCycleState = new CyclesStateModel();
 

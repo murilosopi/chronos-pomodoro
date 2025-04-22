@@ -1,0 +1,5 @@
+.history_header {
+  display: flex;
+  gap: 2rem;
+  margin-bottom: 1.5rem;
+}

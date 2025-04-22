@@ -7,10 +7,12 @@ type CyclesContextProps = {
   state: CyclesStateModel;
   startNewCycle: (cycle: CycleModel) => void;
   interruptLastCycle: () => void;
+  clearCyclesHistory: () => void;
 };
 
 export const CyclesContext = createContext<CyclesContextProps>({
   state: initialCyclesState,
   startNewCycle: () => {},
   interruptLastCycle: () => {},
+  clearCyclesHistory: () => {},
 });

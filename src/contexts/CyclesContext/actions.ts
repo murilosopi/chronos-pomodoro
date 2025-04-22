@@ -6,6 +6,7 @@ export enum CyclesActionTypes {
   COMPLETE_LAST_CYCLE = "COMPLETE_LAST_CYCLE",
   UPDATE_TIMER = "UPDATE_TIMER",
   RESET_STATE = "RESET_STATE",
+  CLEAR_HISTORY = "CLEAR_HISTORY",
 }
 
 type StartCycleAction = {
@@ -30,9 +31,14 @@ type ResetStateAction = {
   type: CyclesActionTypes.RESET_STATE;
 };
 
+type ClearHistoryAction = {
+  type: CyclesActionTypes.CLEAR_HISTORY;
+};
+
 export type CycleActionModel =
   | StartCycleAction
   | InterruptCycleAction
   | UpdateTimerAction
   | CompleteCycleAction
-  | ResetStateAction;
+  | ResetStateAction
+  | ClearHistoryAction;

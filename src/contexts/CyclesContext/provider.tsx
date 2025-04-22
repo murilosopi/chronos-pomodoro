@@ -32,6 +32,12 @@ export const CyclesContextProvider = ({
     });
   };
 
+  const clearCyclesHistory = () => {
+    dispatch({
+      type: CyclesActionTypes.CLEAR_HISTORY,
+    });
+  }
+
   const worker = TimerWorkerManager.getInstance();
 
   worker.listenTimerTick((e: MessageEvent<number>) => {
@@ -68,7 +74,7 @@ export const CyclesContextProvider = ({
 
   return (
     <CyclesContext.Provider
-      value={{ state, interruptLastCycle, startNewCycle }}
+      value={{ state, interruptLastCycle, startNewCycle, clearCyclesHistory }}
     >
       {children}
     </CyclesContext.Provider>
