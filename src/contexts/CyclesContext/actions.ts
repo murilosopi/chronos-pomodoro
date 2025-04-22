@@ -1,3 +1,4 @@
+import { CycleTypes } from "../../enums/CycleTypes";
 import { CycleModel } from "../../models/CycleModel";
 
 export enum CyclesActionTypes {
@@ -7,6 +8,7 @@ export enum CyclesActionTypes {
   UPDATE_TIMER = "UPDATE_TIMER",
   RESET_STATE = "RESET_STATE",
   CLEAR_HISTORY = "CLEAR_HISTORY",
+  UPDATE_TIME_CONFIG = "UPDATE_TIME_CONFIG",
 }
 
 type StartCycleAction = {
@@ -35,10 +37,19 @@ type ClearHistoryAction = {
   type: CyclesActionTypes.CLEAR_HISTORY;
 };
 
+type UpdateTimeConfigAction = {
+  type: CyclesActionTypes.UPDATE_TIME_CONFIG;
+  payload: {
+    seconds: number;
+    type: CycleTypes;
+  };
+};
+
 export type CycleActionModel =
   | StartCycleAction
   | InterruptCycleAction
   | UpdateTimerAction
   | CompleteCycleAction
   | ResetStateAction
-  | ClearHistoryAction;
+  | ClearHistoryAction
+  | UpdateTimeConfigAction;
