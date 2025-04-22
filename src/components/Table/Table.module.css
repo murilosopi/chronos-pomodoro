@@ -1,0 +1,25 @@
+.table_wrapper {
+  border-radius: 2rem;
+  max-width: 100%;
+  overflow-x: auto;
+}
+
+.table {
+  width: 100%;
+  min-width: 528px;
+  border-collapse: collapse;
+}
+
+.table :is(th, td) {
+  border-bottom: 0.2rem solid var(--gray-700);
+  text-align: left;
+  padding: 1.6rem;
+}
+
+.table th {
+  background-color: var(--gray-600);
+}
+
+.table td {
+  background-color: var(--gray-800);
+}
