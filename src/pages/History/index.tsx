@@ -14,7 +14,7 @@ export const History = () => {
   return (
     <MainTemplate>
       <header className={styles.history_header}>
-        <Heading>History</Heading>
+        <Heading>Histórico</Heading>
         <Button
           variant="danger"
           onClick={() => {
